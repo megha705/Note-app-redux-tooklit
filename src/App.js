@@ -1,10 +1,23 @@
-import './App.css';
+import NoteList from './components/NoteList';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import ContextProvider from './components/ContextProvider';
 
 function App() {
-  return (
-    <div className="App">
 
-    </div>
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
+  return (
+    <ContextProvider>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <NoteList />
+      </ThemeProvider>
+    </ContextProvider>
   );
 }
 
