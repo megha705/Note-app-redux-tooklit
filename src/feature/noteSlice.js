@@ -40,6 +40,14 @@ export const deleteNote = createAsyncThunk('note/deleteNote',
     }
 )
 
+export const findNoteByTitle = createAsyncThunk('note/findNoteByTitle',
+    async ({ title }) => {
+        console.log(title)
+        const response = await axios.get(`http://localhost:4000/notes?q=${title}`)
+        return response.data
+    }
+)
+
 const initialState = {
     loading: false,
     notes: [],
@@ -76,6 +84,10 @@ const noteSlice = createSlice({
         [deleteNote.fulfilled]: (state, action) => {
             console.log(action)
             state.notes = state.notes.filter((note) => note.id !== action.payload.id)
+        },
+        [findNoteByTitle.fulfilled]: (state, action) => {
+            console.log(action.payload);
+            state.notes = action.payload
         }
     }
 })

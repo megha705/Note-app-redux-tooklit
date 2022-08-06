@@ -16,8 +16,7 @@ function Notes() {
     <Grid
       container
       rowSpacing={1}
-      // columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-      style={{ overflowY: "auto", maxHeight: "430px" }}
+      style={{ overflowY: "auto", maxHeight: "450px", marginTop: "16px" }}
     >
       {state.loading && <Typography variant="h5">Loading...</Typography>}
       {state.error && <Typography variant="h5">{state.error}</Typography>}
