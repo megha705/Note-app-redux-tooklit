@@ -46,7 +46,6 @@ function SearchBar() {
           placeholder="Search Notes"
           value={searchText}
           onChange={(e) => searchChangeHandler(e)}
-          disabled={!state.notes.length}
         />
         {isSearched ? (
           <IconButton
@@ -54,7 +53,7 @@ function SearchBar() {
             type="button"
             sx={{ p: "10px" }}
             aria-label="search"
-            disabled={!state.notes.length}
+            color="error"
           >
             <CloseIcon />
           </IconButton>
@@ -64,7 +63,6 @@ function SearchBar() {
             type="button"
             sx={{ p: "10px" }}
             aria-label="search"
-            disabled={!state.notes.length}
           >
             <SearchIcon />
           </IconButton>
