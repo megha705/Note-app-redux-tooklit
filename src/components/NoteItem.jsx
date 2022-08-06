@@ -26,11 +26,7 @@ function NoteItem(props) {
     color: theme.palette.text.secondary,
   }));
   return (
-    <Grid
-      item
-      xs={6}
-      style={{ padding: "10px" }}
-    >
+    <Grid item xs={12} md={6} style={{ padding: "10px" }}>
       <Item style={{ position: "relative", overflow: "hidden" }}>
         <IconButton
           onClick={() => dispatch(deleteNote({ id }))}

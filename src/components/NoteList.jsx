@@ -10,11 +10,17 @@ function NoteList() {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      padding={4}
+      padding={{ xs: "16px", md: "32px" }}
     >
-      <Typography variant="h4">Note App</Typography>
-      <Grid container marginTop={4}>
-        <Grid item xs={6} md={8}>
+      <Typography mt={2} variant="h4">
+        Note App
+      </Typography>
+      <Grid
+        container
+        marginTop={4}
+        direction={{ xs: "column-reverse", sm: "row" }}
+      >
+        <Grid item paddingTop={{ xs: "16px" }} xs={6} md={8}>
           <Notes />
         </Grid>
         <Grid item xs={6} md={4}>
