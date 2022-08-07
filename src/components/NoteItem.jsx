@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { Grid, Typography, IconButton, Button } from "@mui/material";
+import { Grid, Typography, Button, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteNote } from "../feature/noteSlice";
 import { NoteContext } from "./ContextProvider";
@@ -28,27 +27,30 @@ function NoteItem(props) {
   return (
     <Grid item xs={12} md={6} style={{ padding: "10px" }}>
       <Item style={{ position: "relative", overflow: "hidden" }}>
-        <IconButton
-          onClick={() => dispatch(deleteNote({ id }))}
-          color="error"
-          sx={{ position: "absolote", top: 0, left: "90%" }}
-        >
-          <CloseIcon />
-        </IconButton>
         <Typography variant="h6" mb={2}>
           {title}
         </Typography>
         <Typography variant="subtitle1" mb={2}>
           {text}
         </Typography>
-        <Button
-          onClick={() => editHandler(id)}
-          variant="contained"
-          color="success"
-          size="small"
-        >
-          Edit
-        </Button>
+        <Stack spacing={2} direction="row">
+          <Button
+            onClick={() => editHandler(id)}
+            variant="contained"
+            color="success"
+            size="small"
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={() => dispatch(deleteNote({ id }))}
+            variant="contained"
+            color="error"
+            size="small"
+          >
+            Delete
+          </Button>
+        </Stack>
       </Item>
     </Grid>
   );
