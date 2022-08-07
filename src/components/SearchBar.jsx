@@ -5,14 +5,13 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import { Grid } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { findNoteByTitle, getNotes } from "../feature/noteSlice";
 
 function SearchBar() {
   const [searchText, setSearchText] = useState("");
   const [isSearched, setIsSearched] = useState(false);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.note);
 
   const searchChangeHandler = (e) => {
     setSearchText(e.target.value);
