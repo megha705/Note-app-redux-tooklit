@@ -11,7 +11,7 @@ function NoteList() {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      padding={{ xs: "16px", md: "32px" }}
+      padding={{ xs: "8px", lg: "32px" }}
     >
       <Typography mt={1} variant="h4">
         Note App

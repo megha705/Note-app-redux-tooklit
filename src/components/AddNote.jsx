@@ -50,7 +50,7 @@ function AddNote() {
       justifyContent="center"
       direction="column"
       padding={2}
-      gap={4}
+      gap={2}
     >
       <TextField
         id="outlined-basic"

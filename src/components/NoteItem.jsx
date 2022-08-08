@@ -7,7 +7,7 @@ import { deleteNote } from "../feature/noteSlice";
 import { NoteContext } from "./ContextProvider";
 
 function NoteItem(props) {
-  const { enableEditMode, noteEditHandeler } = useContext(NoteContext);
+  const { enableEditMode, noteEditHandeler, isEdit } = useContext(NoteContext);
   const state = useSelector((state) => state.note);
   const dispatch = useDispatch();
 
@@ -15,13 +15,14 @@ function NoteItem(props) {
     const findNote = state.notes.find((note) => note.id === id);
     noteEditHandeler(findNote);
     enableEditMode();
+    window.scrollTo(0, 0);
   };
 
-  const { title, text, id } = props;
+  const { title, text, id, date, time } = props;
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
-    padding: theme.spacing(2),
+    padding: theme.spacing(1.8),
     color: theme.palette.text.secondary,
   }));
   return (
@@ -33,23 +34,37 @@ function NoteItem(props) {
         <Typography variant="subtitle1" mb={2}>
           {text}
         </Typography>
-        <Stack spacing={2} direction="row">
-          <Button
-            onClick={() => editHandler(id)}
-            variant="contained"
-            color="success"
-            size="small"
-          >
-            Edit
-          </Button>
-          <Button
-            onClick={() => dispatch(deleteNote({ id }))}
-            variant="contained"
-            color="error"
-            size="small"
-          >
-            Delete
-          </Button>
+        <Stack
+          style={{
+            borderTop: "1px solid rgba(255,255,255,.2)",
+            paddingTop: "8px",
+          }}
+          direction="row"
+          justifyContent="space-between"
+        >
+          <Stack spacing={2} direction="row">
+            <Button
+              onClick={() => editHandler(id)}
+              variant="contained"
+              color="success"
+              size="small"
+            >
+              Edit
+            </Button>
+            <Button
+              onClick={() => dispatch(deleteNote({ id }))}
+              variant="contained"
+              color="error"
+              size="small"
+              disabled={isEdit}
+            >
+              Delete
+            </Button>
+          </Stack>
+          <Stack>
+            <Typography variant="caption">{date}</Typography>
+            <Typography variant="caption">{time}</Typography>
+          </Stack>
         </Stack>
       </Item>
     </Grid>

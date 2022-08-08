@@ -17,7 +17,9 @@ export const addNote = createAsyncThunk('note/addNote',
         const response = await axios.post('http://localhost:4000/notes', {
             id: Date.now(),
             title: payload.title,
-            text: payload.text
+            text: payload.text,
+            date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString('en-US')
         })
         return response.data
     }
