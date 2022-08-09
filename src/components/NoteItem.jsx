@@ -1,20 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Grid, Typography, Button, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteNote } from "../feature/noteSlice";
-import { NoteContext } from "./ContextProvider";
+import { enableEditMode, noteEditHandler } from "../feature/noteSlice";
 
 function NoteItem(props) {
-  const { enableEditMode, noteEditHandeler, isEdit } = useContext(NoteContext);
   const state = useSelector((state) => state.note);
   const dispatch = useDispatch();
 
   const editHandler = (id) => {
     const findNote = state.notes.find((note) => note.id === id);
-    noteEditHandeler(findNote);
-    enableEditMode();
+    dispatch(noteEditHandler(findNote));
+    dispatch(enableEditMode());
     window.scrollTo(0, 0);
   };
 
@@ -56,7 +55,7 @@ function NoteItem(props) {
               variant="contained"
               color="error"
               size="small"
-              disabled={isEdit}
+              disabled={state.isEdit}
             >
               Delete
             </Button>

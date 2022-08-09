@@ -1,23 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, TextField, Button, ButtonGroup } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../feature/noteSlice";
-import { NoteContext } from "./ContextProvider";
 import { editNote } from "../feature/noteSlice";
+import { disableEditMode, noteEditHandler } from "../feature/noteSlice";
 
 function AddNote() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const { isEdit, noteEdit, disableEditMode, noteEditHandeler } =
-    useContext(NoteContext);
+  const state = useSelector((state) => state.note);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (noteEdit) {
-      setTitle(noteEdit.title);
-      setText(noteEdit.text);
+    if (state.noteEdit) {
+      setTitle(state.noteEdit.title);
+      setText(state.noteEdit.text);
     }
-  }, [noteEdit]);
+  }, [state.noteEdit]);
 
   const saveNoteHandler = () => {
     if (title || text) {
@@ -27,14 +26,14 @@ function AddNote() {
   };
 
   const editSaveHandler = () => {
-    dispatch(editNote({ id: noteEdit.id, title, text }));
-    disableEditMode();
+    dispatch(editNote({ id: state.noteEdit.id, title, text }));
+    dispatch(disableEditMode());
     resetField();
   };
 
   const canselEdit = () => {
-    disableEditMode();
-    noteEditHandeler(null);
+    dispatch(disableEditMode());
+    dispatch(noteEditHandler(null));
     resetField();
   };
 
@@ -69,7 +68,7 @@ function AddNote() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      {isEdit ? (
+      {state.isEdit ? (
         <ButtonGroup fullWidth variant="contained">
           <Button
             onClick={editSaveHandler}

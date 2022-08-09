@@ -62,6 +62,7 @@ function SearchBar() {
             type="button"
             sx={{ p: "10px" }}
             aria-label="search"
+            color="primary"
           >
             <SearchIcon />
           </IconButton>

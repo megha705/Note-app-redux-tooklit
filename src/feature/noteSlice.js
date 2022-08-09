@@ -29,7 +29,9 @@ export const editNote = createAsyncThunk('note/editNote',
     async (payload) => {
         const response = await axios.put(`http://localhost:4000/notes/${payload.id}`, {
             title: payload.title,
-            text: payload.text
+            text: payload.text,
+            date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString('en-US')
         })
         return response.data
     }
@@ -53,12 +55,26 @@ export const findNoteByTitle = createAsyncThunk('note/findNoteByTitle',
 const initialState = {
     loading: false,
     notes: [],
-    error: ''
+    error: '',
+    count: 2,
+    isEdit: false,
+    noteEdit: null
 }
 
 const noteSlice = createSlice({
     name: 'note',
     initialState,
+    reducers: {
+        enableEditMode: (state) => {
+            state.isEdit = true
+        },
+        disableEditMode: (state) => {
+            state.isEdit = false
+        },
+        noteEditHandler: (state, action) => {
+            state.noteEdit = action.payload
+        }
+    },
     extraReducers: {
         [getNotes.pending]: (state) => {
             state.loading = true
@@ -95,3 +111,6 @@ const noteSlice = createSlice({
 })
 
 export default noteSlice.reducer
+export const { enableEditMode,
+    disableEditMode,
+    noteEditHandler } = noteSlice.actions
