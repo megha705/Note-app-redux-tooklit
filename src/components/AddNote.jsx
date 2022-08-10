@@ -75,6 +75,10 @@ function AddNote() {
             fullWidth
             variant="contained"
             color="success"
+            disabled={
+              (state.noteEdit && state.noteEdit.text) === text &&
+              (state.noteEdit && state.noteEdit.title) === title
+            }
           >
             Edit note
           </Button>
