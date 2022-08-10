@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../feature/noteSlice";
 import { editNote } from "../feature/noteSlice";
 import { disableEditMode, noteEditHandler } from "../feature/noteSlice";
+import { useSnackbar } from "notistack";
 
 function AddNote() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const state = useSelector((state) => state.note);
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (state.noteEdit) {
@@ -21,12 +23,14 @@ function AddNote() {
   const saveNoteHandler = () => {
     if (title || text) {
       dispatch(addNote({ title, text }));
+      enqueueSnackbar("Added successfully", { variant: "success" });
       resetField();
     }
   };
 
   const editSaveHandler = () => {
     dispatch(editNote({ id: state.noteEdit.id, title, text }));
+    enqueueSnackbar("Edited successfully", { variant: "success" });
     dispatch(disableEditMode());
     resetField();
   };
