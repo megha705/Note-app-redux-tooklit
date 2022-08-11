@@ -10,7 +10,9 @@ function ColumnButton() {
   const dispatch = useDispatch();
 
   const handleAlignment = (event, newAlignment) => {
-    dispatch(changeColumns(newAlignment));
+    if (newAlignment !== null) {
+      dispatch(changeColumns(newAlignment));
+    }
   };
 
   return (
