@@ -25,7 +25,7 @@ function NoteItem(props) {
     color: theme.palette.text.secondary,
   }));
   return (
-    <Grid item xs={12} md={6} style={{ padding: "10px" }}>
+    <Grid item xs={12} md={state.column} style={{ padding: "10px" }}>
       <Item style={{ position: "relative", overflow: "hidden" }}>
         <Typography variant="h6" mb={2}>
           {title}

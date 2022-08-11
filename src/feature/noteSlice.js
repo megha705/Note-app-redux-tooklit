@@ -59,6 +59,7 @@ const initialState = {
     count: 2,
     isEdit: false,
     noteEdit: null,
+    column: 6
 }
 
 const noteSlice = createSlice({
@@ -74,6 +75,9 @@ const noteSlice = createSlice({
         noteEditHandler: (state, action) => {
             state.noteEdit = action.payload
         },
+        changeColumns: (state, action) => {
+            state.column = action.payload
+        }
     },
     extraReducers: {
         [getNotes.pending]: (state) => {
@@ -113,4 +117,4 @@ const noteSlice = createSlice({
 export default noteSlice.reducer
 export const { enableEditMode,
     disableEditMode,
-    noteEditHandler, } = noteSlice.actions
+    noteEditHandler, changeColumns } = noteSlice.actions
