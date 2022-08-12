@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Grid, TextField, Button, ButtonGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../feature/noteSlice";
@@ -44,7 +44,7 @@ function AddNote() {
     resetField();
   };
 
-  const convertImageToStringBase = (file) => {
+  const convertImageToStringBase = useCallback((file) => {
     const fileReader = new FileReader();
     fileReader.onload = (e) => {
       const { result } = e.target;
@@ -53,7 +53,7 @@ function AddNote() {
       }
     };
     fileReader.readAsDataURL(file);
-  };
+  }, []);
 
   const resetField = () => {
     setText("");
@@ -87,7 +87,7 @@ function AddNote() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <FileUpload onImage={convertImageToStringBase} />
+      <FileUpload onImage={convertImageToStringBase} onfile={image} />
       {state.isEdit ? (
         <ButtonGroup fullWidth variant="contained">
           <Button

@@ -1,21 +1,27 @@
-import React, { useState, memo } from "react";
+import React, { memo } from "react";
 import { Button } from "@mui/material";
 
 const IMAGE_TYPE = /image\/(png|jpg|jpeg|gif)/i;
 
-function FileUpload({ onImage }) {
-  const [fileUpload, setFileUpload] = useState([]);
+function FileUpload({ onImage, onfile }) {
   const handelFileUpload = (e) => {
     const file = Array.from(e.target.files);
-    setFileUpload(file);
-    onImage(file[0]);
+    if (file[0].type.match(IMAGE_TYPE)) {
+      onImage(file[0]);
+    }
   };
+
+  console.log("render")
 
   return (
     <Button
       fullWidth
-      sx={{ height: "100px", border: "2px dashed" }}
-      variant="outlined"
+      sx={{
+        height: "100px",
+        border: "2px dashed",
+        borderColor: onfile ? "green" : "",
+      }}
+      color="primary"
       disableRipple
       component="label"
     >
