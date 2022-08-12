@@ -33,7 +33,7 @@ function NoteItem(props) {
         <Typography variant="subtitle1" mb={2}>
           {text}
         </Typography>
-        <Stack sx={{ width: "100%" }}>
+        <Stack sx={{ width: "100%" }} mb={2}>
           <img style={{ width: "100%" }} src={image} alt="noteimage" />
         </Stack>
         <Stack

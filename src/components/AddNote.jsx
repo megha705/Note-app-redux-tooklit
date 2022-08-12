@@ -55,6 +55,10 @@ function AddNote() {
     fileReader.readAsDataURL(file);
   }, []);
 
+  const resetImage = useCallback(() => {
+    setImage("");
+  }, []);
+
   const resetField = () => {
     setText("");
     setTitle("");
@@ -87,7 +91,11 @@ function AddNote() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <FileUpload onImage={convertImageToStringBase} onfile={image} />
+      <FileUpload
+        onImage={convertImageToStringBase}
+        onfile={image}
+        onReset={resetImage}
+      />
       {state.isEdit ? (
         <ButtonGroup fullWidth variant="contained">
           <Button
