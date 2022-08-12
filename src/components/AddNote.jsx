@@ -5,10 +5,12 @@ import { addNote } from "../feature/noteSlice";
 import { editNote } from "../feature/noteSlice";
 import { disableEditMode, noteEditHandler } from "../feature/noteSlice";
 import { useSnackbar } from "notistack";
+import FileUpload from "./FileUpload";
 
 function AddNote() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [image, setImage] = useState("");
   const state = useSelector((state) => state.note);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -21,8 +23,8 @@ function AddNote() {
   }, [state.noteEdit]);
 
   const saveNoteHandler = () => {
-    if (title || text) {
-      dispatch(addNote({ title, text }));
+    if (title || text || image) {
+      dispatch(addNote({ title, text, image }));
       enqueueSnackbar("Added successfully", { variant: "success" });
       resetField();
     }
@@ -39,6 +41,17 @@ function AddNote() {
     dispatch(disableEditMode());
     dispatch(noteEditHandler(null));
     resetField();
+  };
+
+  const convertImageToStringBase = (file) => {
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      const { result } = e.target;
+      if (result) {
+        setImage(result);
+      }
+    };
+    fileReader.readAsDataURL(file);
   };
 
   const resetField = () => {
@@ -72,6 +85,7 @@ function AddNote() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
+      <FileUpload onImage={convertImageToStringBase} />
       {state.isEdit ? (
         <ButtonGroup fullWidth variant="contained">
           <Button

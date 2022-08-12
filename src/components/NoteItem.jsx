@@ -9,6 +9,7 @@ import { enableEditMode, noteEditHandler } from "../feature/noteSlice";
 function NoteItem(props) {
   const state = useSelector((state) => state.note);
   const dispatch = useDispatch();
+  const { title, text, id, date, time, image } = props;
 
   const editHandler = (id) => {
     const findNote = state.notes.find((note) => note.id === id);
@@ -17,7 +18,6 @@ function NoteItem(props) {
     window.scrollTo(0, 0);
   };
 
-  const { title, text, id, date, time } = props;
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -33,6 +33,9 @@ function NoteItem(props) {
         <Typography variant="subtitle1" mb={2}>
           {text}
         </Typography>
+        <Stack sx={{ width: "100%" }}>
+          <img style={{ width: "100%" }} src={image} alt="noteimage" />
+        </Stack>
         <Stack
           style={{
             borderTop: "1px solid rgba(255,255,255,.2)",
