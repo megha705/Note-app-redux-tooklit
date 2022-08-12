@@ -32,7 +32,8 @@ export const editNote = createAsyncThunk('note/editNote',
             title: payload.title,
             text: payload.text,
             date: new Date().toLocaleDateString(),
-            time: new Date().toLocaleTimeString('en-US')
+            time: new Date().toLocaleTimeString('en-US'),
+            image: payload.image
         })
         return response.data
     }

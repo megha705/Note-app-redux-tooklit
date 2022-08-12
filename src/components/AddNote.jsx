@@ -19,6 +19,7 @@ function AddNote() {
     if (state.noteEdit) {
       setTitle(state.noteEdit.title);
       setText(state.noteEdit.text);
+      setImage(state.noteEdit.image);
     }
   }, [state.noteEdit]);
 
@@ -31,7 +32,7 @@ function AddNote() {
   };
 
   const editSaveHandler = () => {
-    dispatch(editNote({ id: state.noteEdit.id, title, text }));
+    dispatch(editNote({ id: state.noteEdit.id, title, text, image }));
     enqueueSnackbar("Edited successfully", { variant: "success" });
     dispatch(disableEditMode());
     resetField();
@@ -57,6 +58,7 @@ function AddNote() {
   const resetField = () => {
     setText("");
     setTitle("");
+    setImage("");
   };
 
   return (
@@ -95,7 +97,8 @@ function AddNote() {
             color="success"
             disabled={
               (state.noteEdit && state.noteEdit.text) === text &&
-              (state.noteEdit && state.noteEdit.title) === title
+              (state.noteEdit && state.noteEdit.title) === title &&
+              (state.noteEdit && state.noteEdit.image) === image
             }
           >
             Edit note
