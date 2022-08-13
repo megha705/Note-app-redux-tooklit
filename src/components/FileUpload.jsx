@@ -1,12 +1,13 @@
 import React, { memo } from "react";
-import { Button, Stack, IconButton } from "@mui/material";
+import { Button, Stack, IconButton, Tooltip } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const IMAGE_TYPE = /image\/(png|jpg|jpeg|gif)/i;
 
 function FileUpload({ onImage, onfile, onReset }) {
   const handelFileUpload = (file) => {
-    if (file[0].type.match(IMAGE_TYPE)) {
+    if (file[0].type.match(IMAGE_TYPE) && file[0].size < 2_000_000) {
       onImage(file[0]);
     }
     console.log(file);
@@ -21,7 +22,6 @@ function FileUpload({ onImage, onfile, onReset }) {
   const dropHandler = (e) => {
     e.preventDefault();
     const file = Array.from(e.dataTransfer.files);
-    console.log(file);
     handelFileUpload(file);
   };
 
@@ -50,30 +50,45 @@ function FileUpload({ onImage, onfile, onReset }) {
       style={styles.paperContainer}
     >
       {onfile ? (
-        <IconButton
-          onClick={() => onReset()}
-          sx={{ position: "absolute", right: 5, top: 5, zIndex: 4, opacity: 1 }}
-          aria-label="delete"
-          size="small"
-          color="error"
-        >
-          <CloseIcon fontSize="inherit" />
-        </IconButton>
+        <Tooltip title="delete to change image upload" placement="top">
+          <IconButton
+            onClick={() => onReset()}
+            sx={{
+              position: "absolute",
+              right: 5,
+              top: 5,
+              zIndex: 4,
+              opacity: 1,
+            }}
+            aria-label="delete"
+            size="medium"
+            color="error"
+          >
+            <CloseIcon fontSize="inherit" />
+          </IconButton>
+        </Tooltip>
       ) : null}
-      <Button
-        sx={{
-          height: "100%",
-        }}
-        fullWidth
-        color="primary"
-        disableRipple
-        component="label"
-        onDrop={dropHandler}
-        onDragOver={dragOverHandler}
+      <Tooltip
+        title="Your image format should be jpg, jpeg, png, gif and smaller than 2MB"
+        placement="top"
       >
-        {onfile ? "" : "Upload File"}
-        <input onChange={(e) => handelChange(e)} type="file" hidden />
-      </Button>
+        <Button
+          sx={{
+            height: "100%",
+          }}
+          fullWidth
+          color="primary"
+          disableRipple
+          component="label"
+          onDrop={dropHandler}
+          onDragOver={dragOverHandler}
+          size="large"
+          startIcon={onfile ? null : <CloudUploadIcon />}
+        >
+          {onfile ? "" : "Upload Image"}
+          <input onChange={(e) => handelChange(e)} type="file" hidden />
+        </Button>
+      </Tooltip>
     </Stack>
   );
 }

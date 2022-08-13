@@ -45,14 +45,18 @@ function AddNote() {
   };
 
   const convertImageToStringBase = useCallback((file) => {
-    const fileReader = new FileReader();
-    fileReader.onload = (e) => {
-      const { result } = e.target;
-      if (result) {
-        setImage(result);
-      }
-    };
-    fileReader.readAsDataURL(file);
+    try {
+      const fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        const { result } = e.target;
+        if (result) {
+          setImage(result);
+        }
+      };
+      fileReader.readAsDataURL(file);
+    } catch (err) {
+      console.log(err.message);
+    }
   }, []);
 
   const resetImage = useCallback(() => {
