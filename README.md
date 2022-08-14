@@ -21,14 +21,13 @@ and I just wanted to focus on logic so I used material ui to design the pages.
 
 ### Feature
 
-- Add, delete, edit, Note (CRUD) by json-server as fake Rest api
-- use material ui component in project
-- state management with redux-toolkit (CRUD)
-- upload Image and convert to String Base64 and save in fake database
-- column button to change Notes column
-- search notes by fulltext search in json-server
-- full responsive in all device
--
+- [x]  Add, delete, edit, Note (CRUD) by json-server as fake Rest api
+- [x]  use material ui component in project
+- [x]  state management with redux-toolkit (CRUD)
+- [x]  upload Image and convert to String Base64 and save in fake database
+- [x]  column button to change Notes column
+- [x]  search notes by fulltext search in json-server
+- [x]  full responsive in all device
 
 ## Run
 
