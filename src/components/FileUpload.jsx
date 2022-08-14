@@ -85,7 +85,7 @@ function FileUpload({ onImage, onfile, onReset }) {
           size="large"
           startIcon={onfile ? null : <CloudUploadIcon />}
         >
-          {onfile ? "" : "Upload Image"}
+          {onfile ? "" : "Drag & Drop or Browse to upload"}
           <input onChange={(e) => handelChange(e)} type="file" hidden />
         </Button>
       </Tooltip>
