@@ -1,5 +1,9 @@
 # Note App Redux-toolkit
 
+I decided to do this project for myself as practice.
+This Note app created by react js and used redux-toolkit for state management and json-server for fake Rest api.
+and I just wanted to focus on logic so I used material ui to design the pages.
+
 ---
 ![Screenshot from 2022-08-14 13-55-38](https://user-images.githubusercontent.com/91375726/184532957-106723b2-add0-4ea4-b6b6-2d4b624b7513.png)
 
