@@ -4,7 +4,7 @@ import axios from "axios";
 export const getNotes = createAsyncThunk("note/getNotes",
     async () => {
         try {
-            const response = await axios.get('http://localhost:4000/notes');
+            const response = await axios.get('/notes');
             return response.data
         } catch (error) {
             console.log(error.message);
@@ -14,7 +14,7 @@ export const getNotes = createAsyncThunk("note/getNotes",
 
 export const addNote = createAsyncThunk('note/addNote',
     async (payload) => {
-        const response = await axios.post('http://localhost:4000/notes', {
+        const response = await axios.post('/notes', {
             id: Date.now(),
             title: payload.title,
             text: payload.text,
@@ -28,7 +28,7 @@ export const addNote = createAsyncThunk('note/addNote',
 
 export const editNote = createAsyncThunk('note/editNote',
     async (payload) => {
-        const response = await axios.put(`http://localhost:4000/notes/${payload.id}`, {
+        const response = await axios.put(`/notes/${payload.id}`, {
             title: payload.title,
             text: payload.text,
             date: new Date().toLocaleDateString(),
@@ -41,7 +41,7 @@ export const editNote = createAsyncThunk('note/editNote',
 
 export const deleteNote = createAsyncThunk('note/deleteNote',
     async (payload) => {
-        await axios.delete(`http://localhost:4000/notes/${payload.id}`)
+        await axios.delete(`/notes/${payload.id}`)
         return { id: payload.id }
     }
 )
@@ -49,7 +49,7 @@ export const deleteNote = createAsyncThunk('note/deleteNote',
 export const findNoteByTitle = createAsyncThunk('note/findNoteByTitle',
     async ({ title }) => {
         console.log(title)
-        const response = await axios.get(`http://localhost:4000/notes?q=${title}`)
+        const response = await axios.get(`/notes?q=${title}`)
         return response.data
     }
 )
