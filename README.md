@@ -2,8 +2,6 @@
 
 ---
 
-
-
 ---
 
 ### Package in Project:
@@ -19,13 +17,13 @@
 ### Feature
 
 - Add, delete, edit, Note (CRUD) by json-server as fake Rest api
-- use material ui component in project 
+- use material ui component in project
 - state management with redux-toolkit (CRUD)
 - upload Image and convert to String Base64 and save in fake database
 - column button to change Notes column
 - search notes by fulltext search in json-server
 - full responsive in all device
-- 
+-
 
 ## Run
 
@@ -54,14 +52,17 @@ npm install
 
 ```
 
-Start the json-server 
+Start the json-server
 
 ```bash
 
 npm run json-serve
+
+```
 
 Start the Project
 
 ```bash
 
 npm start
+```
