@@ -1,6 +1,7 @@
 # Note App Redux-toolkit
 
 ---
+![Screenshot from 2022-08-14 13-55-38](https://user-images.githubusercontent.com/91375726/184532957-106723b2-add0-4ea4-b6b6-2d4b624b7513.png)
 
 ---
 
