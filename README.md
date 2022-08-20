@@ -32,6 +32,26 @@ and I just wanted to focus on logic so I used material ui to design the pages.
 - [x]  search notes by fulltext search in json-server
 - [x]  full responsive in all device
 
+# Components Structure
+```
+├───app
+│   └───store.js
+│ 
+├───feature
+│   └───noteSlice.js
+│
+├───Components
+│   ├───AddNote
+│   ├───ColumnButton
+│   ├───FileUpload
+│   ├───NoteItem
+│   ├───NoteList
+│   ├───Notes
+│   ├───SearchBar
+│   └───Skelton
+
+```
+
 ## Run
 
 Clone the project
