@@ -37,6 +37,9 @@ and I just wanted to focus on logic so I used material ui to design the pages.
 ├───app
 │   └───store.js
 │ 
+├───api
+│   └───api.js
+|
 ├───feature
 │   └───noteSlice.js
 │
