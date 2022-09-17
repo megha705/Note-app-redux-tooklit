@@ -5,6 +5,9 @@ This Note app created by react js and used redux-toolkit for state management an
 and I just wanted to focus on logic so I used material ui to design the pages.
 
 ---
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://noteapp-redux-toolkit.herokuapp.com/) 
+##### *please turn on your vpn to see demo*
+---
 ![Screenshot from 2022-08-14 13-55-38](https://user-images.githubusercontent.com/91375726/184532957-106723b2-add0-4ea4-b6b6-2d4b624b7513.png)
 
 ---
@@ -28,6 +31,26 @@ and I just wanted to focus on logic so I used material ui to design the pages.
 - [x]  column button to change Notes column
 - [x]  search notes by fulltext search in json-server
 - [x]  full responsive in all device
+
+# Components Structure
+```
+├───app
+│   └───store.js
+│ 
+├───feature
+│   └───noteSlice.js
+│
+├───Components
+│   ├───AddNote
+│   ├───ColumnButton
+│   ├───FileUpload
+│   ├───NoteItem
+│   ├───NoteList
+│   ├───Notes
+│   ├───SearchBar
+│   └───Skelton
+
+```
 
 ## Run
 
