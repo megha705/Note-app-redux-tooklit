@@ -1,37 +1,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getNotesApi, addNoteApi, editNoteApi, deleteNoteApi, searchNoteApi } from "../api/api";
+import * as Api from "../api/api";
 
 export const getNotes = createAsyncThunk("note/getNotes",
     async () => {
-        const response = await getNotesApi();
+        const response = await Api.getNotesApi();
         return response
     }
 )
 
 export const addNote = createAsyncThunk('note/addNote',
     async (payload) => {
-        const response = await addNoteApi(payload)
+        const response = await Api.addNoteApi(payload)
         return response
     }
 )
 
 export const editNote = createAsyncThunk('note/editNote',
     async (payload) => {
-        const response = await editNoteApi(payload)
+        const response = await Api.editNoteApi(payload)
         return response
     }
 )
 
 export const deleteNote = createAsyncThunk('note/deleteNote',
     async (payload) => {
-        await deleteNoteApi(payload)
+        await Api.deleteNoteApi(payload)
         return { id: payload.id }
     }
 )
 
 export const findNoteByTitle = createAsyncThunk('note/findNoteByTitle',
     async ({ title }) => {
-        const response = await searchNoteApi(title)
+        const response = await Api.searchNoteApi(title)
         return response
     }
 )
