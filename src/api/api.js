@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "/notes",
+    baseURL: "http://localhost:8000/notes",
 })
 
 export const getNotesApi = async () => {

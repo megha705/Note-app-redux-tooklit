@@ -38,7 +38,7 @@ function AddNote() {
     resetField();
   };
 
-  const canselEdit = () => {
+  const cancelEdit = () => {
     dispatch(disableEditMode());
     dispatch(noteEditHandler(null));
     resetField();
@@ -116,7 +116,7 @@ function AddNote() {
             Edit note
           </Button>
           <Button
-            onClick={canselEdit}
+            onClick={cancelEdit}
             fullWidth
             variant="contained"
             color="error"
